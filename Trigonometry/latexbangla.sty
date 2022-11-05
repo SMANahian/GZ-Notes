@@ -1,15 +1,15 @@
 % ----------------------------------------------------------------
-% LaTeXbangla package - Enhanced LaTeX integration for Bangla
+% LaTeXbangla package - Enhanced LaTeX integration for Bangla 
 % E-mail: adib.hasan8@gmail.com
 % Released under the LaTeX Project Public License v1.3c or later
 % See http://www.latex-project.org/lppl.txt
 % ----------------------------------------------------------------
 % This package simplifies the process of writing Bangla in LaTeX and
 % addresses most of the common typesetting issues. Additional features
-% include automatic transition between languages and many more. (See
-% examples) The user can just type in usual LaTeX syntax and expect
+% include automatic transition between languages and many more. (See 
+% examples) The user can just type in usual LaTeX syntax and expect 
 % everything to work as it should.
-% ------------------------------------------------------------------
+% ------------------------------------------------------------------ 
 % Copyright (C) 2016 by Adib Hasan adib.hasan8@gmail.com
 
 % This work may be distributed and/or modified under the
@@ -26,9 +26,9 @@
 %                                   latexbangla.tex, and
 %                                   latexbangla.pdf
 %
-%
+% 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{latexbangla_exp}[2016/10/31 v0.2 Enhanced LaTeX integration for Bangla]
+\ProvidesPackage{latexbangla}[2016/10/31 v0.2 Enhanced LaTeX integration for Bangla]
 
 \RequirePackage{polyglossia, fontspec, xkeyval, ifxetex}
 
@@ -65,7 +65,7 @@
 
 \DeclareOptionX{banglamainfont}{%
 	\if\relax\detokenize{#1}\relax
-		\errmessage{Bangla main font not defined}
+		\errmessage{Bangla main font not defined}	
 	\else
 		\def\bm@name{#1}
 		\def\bm@@name{bmfont}
@@ -73,7 +73,7 @@
     \fi
 }
 \DeclareOptionX{banglattfont}{%
-	\if\relax\detokenize{#1}\relax
+	\if\relax\detokenize{#1}\relax	
 		\errmessage{Bangla tt font not defined}
 	\else
 		\def\btt@name{#1}
@@ -82,14 +82,14 @@
     \fi
 }
 
-\newif\if@none
+\newif\if@none	
 \newif\if@recom
-\newif\if@full
+\newif\if@full	
 \@recomtrue
-\DeclareOptionX{feature}{
+\DeclareOptionX{feature}{		
 	\if\relax\detokenize{#1}\relax\fi
 	\ifcase#1
-		\@recomfalse
+		\@recomfalse		
 		\@nonetrue
 	\or\or\@fulltrue\fi
 }
@@ -116,7 +116,7 @@
     	\def\bm@wordspace{1}
     \fi\fi\fi
 }
-\def\btt@init#1{
+\def\btt@init#1{	
 	\ifx#1\@@Kalpurush
     	\def\btt@scale{\@Kalpurush{1}}
     	\def\btt@wordspace{\@Kalpurush{3}}
@@ -128,7 +128,7 @@
     	\def\btt@wordspace{\@SolaimanLipi{3}}
 	\else
 		\def\btt@scale{MatchLowercase}
-    	\def\btt@wordspace{1.2}
+    	\def\btt@wordspace{1.2}    
     \fi\fi\fi
 }
 
@@ -136,28 +136,28 @@
 
 %From polyglossia
 \ifchange@num
-	\setmainlanguage[changecounternumbering=false]{bengali}
+	\setmainlanguage[changecounternumbering=true]{bengali}
 \else
 	\setmainlanguage{bengali}
 \fi
 
 \newfontfamily\bengalifont[%
-	Script=Bengali,%
+	Script=Bengali,% 
 	Scale=\bm@scale,%
 	NFSSFamily=\bm@@name,%
 	WordSpace=\bm@wordspace,%
 	AutoFakeSlant,
-	AutoFakeBold=2.5
-	]{[\bm@name]}
+	AutoFakeBold
+	]{\bm@name}
 
 \newfontfamily\bengalifonttt[%
-	Script=Bengali,%
+	Script=Bengali,% 
 	Scale=\btt@scale,%
 	NFSSFamily=\btt@@name,
 	WordSpace=\btt@wordspace,%
 	AutoFakeSlant,
 	AutoFakeBold
-	]{[\btt@name]}
+	]{\btt@name}
 
 \newenvironment{latin}{\fontencoding{OT1}\ifx\f@family\btt@@name\fontfamily{lmtt}\else\fontfamily{lmr}\fi\selectfont}\relax
 
@@ -171,62 +171,53 @@
 
 %the default for feature option is 1, which enables the recommended modifications
 \if@recom
-	\RequirePackage{titlesec, amsthm, xpatch, amsfonts, amssymb, amsmath, chngcntr, enumerate}
+	\RequirePackage{titlesec, amsthm, xpatch, amsfonts, amssymb, amsmath, enumerate, chngcntr, hyperref}
 	%adding a dot after the number in titles
-	%\titlelabel{\thetitle.\enspace}
-
-	%making the word "proof" in proof env. bold and adding a : after it.
+	\titlelabel{\thetitle.\enspace}
+	
+	%making the word "proof" in proof env. bold and adding a : after it.	
 	\xpatchcmd{\proof}{\itshape}{\bfseries}{}{}
 	\xpatchcmd{\proof}{\@addpunct{.}}{\@addpunct{:}}{}{}
-
+		
 	\counterwithin{equation}{section}
 
-	%\renewcommand\UrlFont{\fontencoding{OT1}\fontfamily{lmtt}\selectfont}
+	\renewcommand\UrlFont{\fontencoding{OT1}\fontfamily{lmtt}\selectfont}
 
-	%increases gap between lines
-	\linespread{1.15}
-
-	\def\bengaliletters#1{\expandafter\@bengali@letters #1@}
-	\def\@bengali@letters#1{%
-  	  \ifx @#1% terminate
-      \else
-        \ifcase#1ক\orখ\orগ\orঘ\orঙ\orচ\orছ\orজ\orঝ\orঞ\orট\orঠ\orড\orঢ\orণ\orত\orথ\orদ\orধ\orন\orপ\orফ\orব\orভ\orম\orয\orর\orল\orশ\orষ\orস\orহ\orৎ\orং\orঃ\orঁ\fi
-        \expandafter\@bengali@letters
-      \fi
-    }
-    \def\bengalialphabet#1{\bengaliletters{\number#1}}% Takes number
-    \def\tobengalialph#1{\expandafter\bengaliletters\csname c@#1\endcsname}
-    \newcounter{bengalialph}
-    \setcounter{bengalialph}{1}
-    \renewcommand{\thebengalialph}{\tobenglaialph{bengalialph}}
-	%defining a \tobangla which converts numbers in any counter to bangla
-	%\def\@banglanumber#1{\expandafter\@@banglanumber\number#1\@nil}
-	%\def\@@banglanumber#1{\ifx#1\@nil
-	%\else\char\numexpr#1+"09E6\relax\expandafter\@@banglanumber\fi}
-	\def\tobangla#1{\expandafter\bengalinumber\csname c@#1\endcsname}
-	\def\numtobangla#1{\bengalinumber#1\@nil}
-
-	%Because polyglossia itself defines প্রমাণ as italic. I'm making it bold.
+	%increases gap between lines	
+	\linespread{1.1}
+	
+	%defining a \tobangla which converts numbers in any counter to bangla 	
+	\def\@banglanumber#1{\expandafter\@@banglanumber\number#1\@nil}
+	\def\@@banglanumber#1{\ifx#1\@nil
+	\else\char\numexpr#1+"09E6\relax\expandafter\@@banglanumber\fi}
+	\def\tobangla#1{\expandafter\@banglanumber\csname c@#1\endcsname}
+	\def\numtobangla#1{\@@banglanumber#1\@nil}
+	
+	%Because polyglossia itself defines প্রমাণ as italic. I'm making it bold.	
 	\addto\captionsbengali{\renewcommand\proofname{\bfseries প্রমাণ}}
-
-	%a new solution environment
-	\newenvironment{solution}[1][সমাধান]{\proof[\bfseries #1]}{\endproof}
-
+	
+	%a new solution environment	
+	\newenvironment{solution}{\proof[\bfseries সমাধান]}{\endproof}
+	
 	\newtheoremstyle{custom}% name
 	{3pt}% space above
 	{3pt}% space below
-	{\itshape}% body font
+	{\rm}% body font
 	{}% indent amount
-	{\upshape\bfseries}% theorem head font
+	{\bfseries}% theorem head font
 	{:}% punctuation after theorem head
 	{.5em}% space after theorem head
-	{}%{\thmname{#1}\thmnumber{ \normalfont#2}\thmnote{(#3)}}% theorem head spec
+	{}% theorem head spec
 	\theoremstyle{custom}
-	%\newtheorem{example}{উদাহরণ}
-
-	%converting all the useful counters not handled by polyglossia to bangla
+	\newtheorem{example}{\bfseries উদাহরণ}
+	\newtheorem{problem}{\bfseries সমস্যা}
+	\newtheorem{theorem}{\bfseries উপপাদ্য}[section]
+	
+	%converting all the useful counters not handled by polyglossia to bangla	
 	\renewcommand{\theequation}{\thesection.\tobangla{equation}}
-	%\renewcommand{\theexample}{\tobangla{example}}
+	\renewcommand{\thetheorem}{\thesection.\tobangla{theorem}}
+	\renewcommand{\theexample}{\tobangla{example}}
+	\renewcommand{\theproblem}{\tobangla{problem}}
 	\renewcommand{\theenumi}{\tobangla{enumi}}
 	\renewcommand{\theenumii}{\tobangla{enumii}}
 	\renewcommand{\theenumiii}{\tobangla{enumiii}}
@@ -239,12 +230,12 @@
 	\theoremstyle{custom}
 	\newtheorem{corollary}{\bfseries অনুসিদ্ধান্ত}[section]
 	\newtheorem{property}{\bfseries বৈশিষ্ট্য}[section]
+	\newtheorem*{remark}{\bfseries মন্তব্য}
 	\newtheorem*{hint} {\bfseries হিন্ট}
 	\renewcommand{\thecorollary}{\thesection.\tobangla{corollary}}
 	\renewcommand{\theproperty}{\thesection.\tobangla{property}}
-	\addto\captionsbengali{\renewcommand\abstractname{সারসংক্ষেপ}}
-	\addto\captionsbengali{\renewcommand\bibname{\bfseries গ্রন্থসূত্র}}
-	\addto\captionsbengali{\renewcommand{\figurename}{চিত্র}}
+	\addto\captionsbengali{\renewcommand\abstractname{\bfseries সারসংক্ষেপ}}
+	%\addto\captionsbengali{\renewcommand\referencename{\bfseries তথ্যসূত্রসমূহ}}
 	\newenvironment{motive}{\proof[\bfseries মোটিভেশন]}{\phantom\qedhere\endproof}
 	\def\equationautorefname~#1\null{(#1)\null}
 \fi
