@@ -1,0 +1,334 @@
+\documentclass[12pt]{article}
+
+\usepackage{../sty_files/packages}
+\usepackage{../sty_files/shortcuts}
+\usepackage{asymptote}
+
+
+\usepackage{parskip}
+
+\setlist[itemize]{label=$\bullet$}
+
+% \newcommand{\Newdot}{{\leavevmode\put(0,.63){\circle*{2.5}}}}
+%--------------------------------------------------------------%
+\begin{document}
+
+\begin{titlepage}
+   \begin{center}
+       \vspace*{1cm}
+       \textbf{\Huge {No equality}}
+
+       \vspace{1cm}
+       \textbf{\Large{এস এম এ নাহিয়ান}}
+       
+       \vfill
+       \includegraphics[width=0.4\textwidth]{images/meta.png}
+
+       \large{গণিতযজ্ঞ}
+   \end{center}
+\end{titlepage}
+
+\tableofcontents
+%---------------------------------------------------------------%
+\newpage
+
+\section{Starting}
+অসমতার ধারণা মূলত বাস্তব সংখ্যার অর্ডার বা ক্রম রয়েছে এই ফ্যাক্ট থেকে এসেছে। যেমন, $a > b$ হলে বাস্তবসংখ্যার
+লাইনে $a$ সবসময় $b$ এর ডানে অবস্থান করবে। 
+আমরা সমীকরণ নিয়ে কাজ করার সময় অনেক গুলো ব্যাসিক রুল মেনে ক্যালকুলেশন করি। তেমনি ইনইকুয়ালিটির 
+ম্যানিপুলেশনের জন্যও কিছু ব্যাসিক রুল রয়েছে। আমি সাজেস্ট করবো বিগিনারদের এই রুল গুলো ভালোভাবে ফিল করার
+ট্রাই করতে। রুলগুলো অনেক সিলি মনে হলেও জটিল ক্যাল্কুলেশনের মাঝে অসাবধান থাকলে যে কেউ এগুলো ভুল করে 
+প্রবলেমকে ফেকসলভ করে ফেলতে পারে (আমি নিজেও অনেকবার করেছি)। 
+\begin{theom*} %{Basic Rules for Inequalities}
+    \begin{itemize}
+        \item $x \geq y$ এবং $y \geq z$ হলে $x \geq z$ হবে। আর কোনোটিতে $>$ সম্পর্ক থাকলে $x > z$ হবে।
+        \item $x \geq y$ হলে ধনাত্মক $k$ এর জন্য, $xk \geq yk$ এবং ঋনাত্মক $k$ এর জন্য $xk \leq yk$ হবে। আর, 
+            $x > y$ হলে ধনাত্মক $k$ এর জন্য, $xk > yk$ এবং ঋনাত্মক $k$ এর জন্য $xk < yk$ হবে।
+            \begin{description}
+                \item[সতর্কতাঃ] অসমতার দুই পাশে কোনো ভ্যারিয়াবল গুণ করতে গেলে খেয়াল রাখতে হবে যেনো 
+                সেটির রেঞ্জে ধনাত্মক আর ঋনাত্মক দুটোই যেনো একসাথে না থাকে।
+            \end{description}
+        \item $x \geq y$ এবং $a \geq b$ হলে $a + x \geq b + y$ হবে। আর কোনোটিতে $>$ সম্পর্ক থাকলে 
+            $a + x > b+y$ হবে। খেয়াল করো, ২য় অসমতার যায়গায় সমীকরণ $a = b$ থাকলেও এভাবে যোগ করতে পারতে।
+            \begin{description}
+                \item[সতর্কতাঃ] অসমতার যোগ করা গেলেও তুমি এটা থেকে $x-a \geq y-b$ লিখতে পারবে না 
+                কারণ এটি সবসময় সত্য হয় না। তবে কোনো অসমতা থেকে তার উলটো অসমতা বিয়োগ করা যায় 
+                সেক্ষেত্রে প্রথম অসমতার চিহ্ন ব্যাবহার হবে। অর্থাৎ, $x \geq y,\ b \leq a \implies x-b \geq y-a$ 
+                কিন্তু সেটি করা আর সোজা অসমতা দুটো যোগ করে পক্ষান্তর করা একই কাজ। 
+            \end{description}
+        \item $x \geq y$ এবং $x,y\neq 0$ হলে $x,\ y$ এর চিহ্ন একই হলে $\dfrac 1x \leq \dfrac 1y$ হবে। আর চিহ্ন 
+            উলটো হলে $\dfrac 1x \geq \dfrac 1y$ হবে আর ইকুয়ালিটি থাকবে যদি এবং কেবল যদি $x=y$ হয়।
+    \end{itemize}
+\end{theom*}
+\section{How to?}
+\subsection{How to approach an inequality problem?}
+সাধারণত, একটি ইনইকুয়ালিটি স্টেটমেন্ট $P_1$ প্রমাণের জন্য তুমি চেষ্টা করতে থাকবে সেটিকে সিমপ্লিফাই করে আরেকটি 
+স্টেটমেন্ট $P_2$ (অবশই সেটিও সত্য হতে হবে) খুজে বের করতে যেনো, $P_2 \implies P_1$ হয় এরপর সেটি প্রমাণের চেষ্টা করবে। 
+এভাবে $P_a$ থেকে $P_{a+1}$ এ যাওয়ার প্রোসেস চালাতে থাকবে যতোক্ষন না পর্যন্ত এমন কোনো স্টেটমেন্ট $P_k$ পাচ্ছো যেটি হয়, well-known অথবা, সহজে সরাসরি বীজগানিতিক 
+ক্যালকুলেশন করে প্রমাণ করে ফেলতে পারো। অর্থাৎ, তোমার প্রমাণ করার চেষ্টাটি হবে অনেকগুলো স্টেটমেন্টের 
+একটা চেইন যেখানে শুরুর স্টেটমেন্টটি সত্য (সম্ভবত কোনো থিওরেম বা well-known ইনইকুয়ালিটি) এবং প্রতিটি স্টেটমেন্ট তার পরের স্টেটমেন্টকে ইমপ্লাই করে আর 
+সবার শেষ স্টেটমেন্টটি হবে সেটা যেটা তোমার প্রমাণ করা লাগবে। অনেকটা এরকম, 
+$$P_k \implies P_{k-1} \implies \dots \implies P_2 \implies P_1$$
+আর তুমি এই চেইনটি তৈরি করবে পেছন থেকে শুরু করে। 
+
+তাহলে, কোনো ইনইকুয়ালিটি প্রমাণের জন্য তিনটি কাজ করতে পারো,
+\begin{itemize}
+    \item এমন কোনো অসমতা বের করা যেটি প্রমাণ করা আরো সহজ আর সেটি থেকে আমাদের প্রয়োজনীয় অসমতাটির পাওয়া যায়।
+    \item প্রয়োজনীয় অসমতাটি কোনো well-known ইনইকুয়ালিটি তা উল্লেখ করে দেওয়া।
+    \item সরাসরি বীজগানিতিক ক্যালকুলেশনের মাধ্যমে প্রমাণ কর। 
+\end{itemize} 
+তবে মনে রাখতে হবে, সবসময় এতো ডিরেক্ট ভাবে এপ্রোচ করা নাও যেতে পারে। কখনো একটা ইনইকুয়ালিটি প্রমানের জন্য সেটাকে 
+দুইটা আলাদা ইনইকুয়ালিটি তে ভাগ করা সহজ হতে পারে। কখনো নতুন ভ্যারিয়াবল দিয়ে প্রতিস্থাপন করা লাগতে পারে। 
+এছাড়াও আরো অনেক ক্লেভার আইডিয়াও কাজে লাগে।
+
+
+% এখানে তৃতীয়টি নিয়ে বলার কিছু নেই। তবে প্রথম দুইটি এপ্লাই করার ক্ষেত্রে একটি অনেক কমন ট্রিক হলো, 
+% পেছন থেকে চিন্তা করা। অর্থাৎ, আমরা শুরু করবো আমাদের যা প্রমান করতে হবে তা দিয়ে।
+% এবং সেটি থেকে আমরা "যদি এবং কেবল যদি" সম্পর্কযুক্ত স্টেটমেন্টে যেতে থাকব যতোক্ষন না পর্যন্ত এমন কোনো 
+% স্টেটমেন্টে যাবো যেটা প্রমান করা হয়তো আরো সহজ অথবা আমরা আগে থেকেই জানি সত্য। \\
+% তবে এখানে খেয়াল রাখতে হবে প্রতিটা ধাপেই যেনো "যদি এবং কেবল যদি" সম্পর্ক বজায় থাকে। \\
+
+\subsection{How to write a proof?}
+কিছু বলার আগে চলো প্রমাণ লেখার দুটি উদাহরণ দেখে নিই,
+\begin{exam} {উদাহরণ \thesection.\thesubsection.1}
+    বাস্তব সংখ্যা $x$ এর জন্য প্রমাণ কর যে,
+    $$x^2 + x > -1$$
+\end{exam}
+\begin{sol}
+    \textbf{প্রমাণ ১ঃ} আমরা জানি, $\left(x+\frac 12\right)^2 \geq 0$। এখন,
+    \begin{align*}
+        \left(x+\frac 12\right)^2 &\geq 0\\
+        \implies x^2 + x + \frac 14 &\geq 0\\
+        \implies x^2 + x &\geq - \frac 14\\
+    \end{align*}
+    আর, $-\frac{1}{4} > -1$ সুতরাং, $x^2 + x > -1 \ \qed$ 
+\end{sol}
+\begin{sol}
+    \textbf{প্রমাণ ২ঃ} এখানে, 
+    \begin{align*}
+        x^2 + x &> -1\\
+        \iff x^2 + 2\cdot x\cdot \frac 12 &> -1\\
+        \iff x^2 + 2\cdot x\cdot \frac 12 + \left(\frac 12\right)^2 &> -1 + \frac 14\\
+        \iff \left(x+\frac 12\right)^2 &> -\frac{3}{4}\\
+    \end{align*}
+    যেটি সত্য কেননা বাস্তব সংখ্যার বর্গ সবসময় অঋণাত্মক হয়। সুতরাং আমাদের প্রথম স্টেটমেন্টটিও সত্য। $\qed$
+\end{sol}
+তো, একটা ইনইকুয়ালিটি প্রবলেম এর প্রমান তুমি সোজা ভাবেও লিখতে পারো আবার উলটো ভাবেও লিখতে পারো।
+তবে কিছু বিষয়ে লক্ষ্য রাখতে হবে। যেমন, সোজা প্রমানটিতে আমি একটি well-known ইনইকুয়ালিটি থেকে শুরু 
+করেছি আর প্রতি ধাপে $\implies$ সম্পর্কযুক্ত (যদিও এখানে সেগুলো "if and only if" সম্পর্কযুক্ত, তবে এই 
+প্রমাণের জন্য শুধু $\implies$ সম্পর্কই যথেষ্ট) আরেকটি ইনইকুয়ালিটি তে গিয়েছি। আর উল্টোভাবে লিখতে গেলে 
+প্রশ্নের অসমতাটি থেকে শুরু করে প্রতি ধাপে $\Longleftarrow$ অথবা, $\iff$ সম্পর্কযুক্ত 
+অসমতায় গিয়েছি এবং শেষে একটি well-known ইনইকুয়ালিটি তে পৌছেছি। এখানে প্রতি স্টেপ এ $\iff$ সম্পর্ক 
+রয়েছে তবে যদি শুধু $\Longleftarrow$ সম্পর্কযুক্ত 
+হয় তাহলে সলুশন চেক করতে নিজের সমস্যা হবে।  
+এখন প্রশ্ন করতে পারো উল্টোভাবে লেখা যদি সমস্যার সৃষ্টি 
+করে তাহলে এভাবে লেখা কেনো শিখবো?\\
+উত্তর হলো, পার্শিয়াল সলুশন লেখার জন্য। তুমি যখন একটা ইনইকুয়ালিটি প্রব্লেম পুরোপুরি সলভ করতে পারবে না তখন 
+তুমি জানো না যে কি থেকে শুরু করলে সেই প্রবলেম স্টেটমেন্টটি পাওয়া যাবে। তখন তুমি পার্শিয়াল পয়েন্ট পাওয়ার জন্য 
+প্রব্লেম স্টেটমেন্ট থেকে শুরু করে সিমপ্লিফাই করে অন্য কোনো সহজ ইনইকুয়ালিটি তে যাওয়ার চেষ্টা করতে থাকবে।
+তাই সেক্ষেত্রে উল্টোভাবে প্রমাণ লেখাই বেটার হবে।
+
+
+
+\section{Some useful ineqs}
+আমরা সবচেয়ে মৌলিক অসমতা টি দিয়েই শুরু করব। 
+\subsection{The Trivial Inequality}
+\subsubsection{Theorem Statement}
+\begin{theom}{The Trivial Inequality}
+    কোনো বাস্তব সংখ্যা $x$ এর জন্য, 
+    $$x^2 \geq 0$$
+    এবং সমতা ঘটে যদি এবং কেবল যদি $x = 0$ হয়।
+\end{theom}
+এটাকে আমরা একাধিক ভ্যারিয়েবলের জন্য এক্সটেন্ড করতে পারি,
+\begin{theom}{The Trivial Inequality (Extended)}
+    কয়েকটি বাস্তব সংখ্যা $x_1, \ x_2, \dots,\ x_n$ এর জন্য, 
+    $$x_1^2 + x_2^2 + \dots + x_n^2 \geq 0$$
+    এবং সমতা ঘটে যদি এবং কেবল যদি $x_1 = x_2 = \dots = x_n = 0$ হয়।
+\end{theom}
+এটা তোমরা সবাই অলরেডি জানো। কিন্তু তবুও উল্লেখ করার কারণ হলো, 
+সাধাণত বেশিরভাগ অসমতা ই এই মৌলিক অসমতাটি থেকে আসে। তাই এটাকে 
+"Mother of all inequality" ও বলা যায়।\\
+\subsubsection{Examples}
+এখন এটি ব্যাবহার করে কিছু উদাহরণ দেখা যাক, (এই উদাহরণ গুলো লেমা হিসেবে অনেক 
+প্রব্লেম এ ব্যাবহার করা যায়) 
+\begin{exam} {উদাহরণ \thesubsubsection.1}
+    প্রমান করো যে, যেকোনো ধনাত্মক বাস্তব সংখ্যা $a$ এর জন্য, 
+    $$a + \dfrac1a \geq  2$$
+    এবং সমতা ঘটে যায় যদি এবং কেবল যদি $a = 1$ হয়। 
+\end{exam}
+
+\begin{sol}
+    এখানে, $a > 0$ সুতরাং,
+    \begin{align*}
+        &a + \dfrac{1}{a} \geq 2\\
+        \iff & a^2 + 1 \geq 2a\\
+        \iff & a^2 - 2a + 1 \geq 0\\
+        \iff & (a-1)^2 \geq 0
+    \end{align*}
+    এখানে প্রতি ধাপের সাথে পরের ধাপে যদি এবং কেবল যদি সম্পর্ক আছে। সুতরাং যেকোনো একটি স্টেটমেন্ট সত্য হলেই 
+    সবগুলো সত্য হবে। আর Trivial Inequality তে $x = a-1$ বসিয়ে আমরা পাই, 
+    শেষ স্টেটমেন্ট টি সত্য। সুতরাং, প্রথম স্টেটমেন্টটিও সত্য।
+    আর শেষ স্টেটমেন্টে সমতা ঘটে, $a-1 = 0 \implies a = 1$ হলে। $\qed$
+\end{sol}
+এই সলুশনে কিছু প্রোপার্টি আমি ব্যাবহার করেছি যেগুলো এই প্রব্লেম এর কন্ডিশনে সত্য হলেও 
+সব সময় সত্য হয় না। এই ব্যাপারে আরো পাবে Some common mistakes সেকশনে।
+\begin{exam} {উদাহরণ \thesubsubsection.2 (AM-GM Inequality for two varriables)}
+    প্রমান করো যে, যেকোনো ধনাত্মক বাস্তব সংখ্যা $a, b$ এর জন্য, 
+    $$\dfrac{a+b}{2} \geq \sqrt{ab}$$
+    আর সমতা ঘটে যদি এবং কেবল যদি, $a = b$ হয়। 
+\end{exam}
+\begin{sol}
+    Trivial inequality তে $x = (\sqrt a - \sqrt b)$ বসিয়ে পাই,
+    \begin{align*}
+        & (\sqrt a - \sqrt b)^2 \geq 0\\
+        \iff & a - 2\sqrt{ab} +b \geq 0\\
+        \iff &  a + b \geq 2\sqrt{ab}\\
+        \iff & \dfrac{a+b}{2} \geq \sqrt{ab}
+    \end{align*}
+    আর সমতা ঘটে, $\sqrt a - \sqrt b = 0 \implies a = b$ হলে। $\qed$ 
+\end{sol}
+
+
+\subsubsection{Excercise}
+
+\subsection{AM-GM Inequality}
+\subsubsection{Theorem Statement}
+\begin{theom} {AM-GM Inequality}
+    কতোগুলো ধনাত্মক বাস্তবসংখ্যা $x_1, \ x_2, \dots,\ x_n$ এর জন্য, 
+    $$\dfrac{x_1+x_2+\dots + x_n}{n} \geq \sqrt[n]{x_1x_2\dots x_n}$$
+    এবং সমতা ঘটে যদি এবং কেবল যদি, $x_1 = x_2 = \dots = x_n$ হয়।
+\end{theom}
+\begin{sol}
+    \textbf{প্রমাণঃ} এটি আমরা প্রমান করবো কশি (Cauchy) ইন্ডাকশন দিয়ে। \\
+    প্রথমেই বেস কেস, $n = 1$ এর জন্য ট্রিভিয়াল। আর $n = 2$ এর জন্য আমরা উদাহরণ ২.২ এ প্রমাণ করে এসেছি।\\
+    এখন আমরা প্রমান করবো, কোনো $n = k$ এর জন্য এটি সত্য হলে $n = 2k$ এর জন্য ও সত্য। 
+    আবার, কোনো $n = k$ এর জন্য সত্য হলে $n = k-1$ এর জন্য ও সত্য। তাহলেই AM-GM ইনইকুয়ালিটি প্রমান হয়ে যাবে
+    সকল $n$ এর জন্য। (কেনো?) \\
+    এখন ধরি, $n = k$ এর জন্য, $\dfrac{x_1+x_2+\dots + x_k}{k} \geq \sqrt[k]{x_1x_2\dots x_k}$। তাহলে,
+    \begin{align*}
+        \dfrac{x_1+x_2+\dots + x_{2k}}{2k} &= \dfrac{\dfrac{x_1+x_2+\dots + x_k}{k} + \dfrac{x_{k+1}+\dots + x_{2k}}{k}}{2}\\
+        &\geq \dfrac{\sqrt[k]{x_1x_2\dots x_k} + \sqrt[k]{x_{k+1}\dots  x_{2k}}}{2}\\
+        &\geq \sqrt{\sqrt[k]{x_1x_2\dots x_k} + \sqrt[k]{x_{k+1}\dots  x_{2k}}}\\
+        &= \sqrt[2k]{x_1x_2\dots  x_{2k}}
+    \end{align*}
+    সুতরাং, $n = 2k$ এর জন্য ও এটি সত্য হবে।\\
+    আবার, ধরি, $n = k$ এর জন্য, $\dfrac{x_1+x_2+\dots + x_k}{k} \geq \sqrt[k]{x_1x_2\dots x_k}$। তাহলে,
+    এখন, $x_k = \dfrac{x_1+\dots + x_{k-1}}{k-1}$ বসিয়ে পাই,
+    \begin{align*}
+        \dfrac{x_1+x_2+\dots +x_{k-1} +\frac{x_1+\dots + x_{k-1}}{k-1}}{k} &\geq \sqrt[k]{x_1x_2\dots x_{k-1}\cdot \frac{x_1+\dots + x_{k-1}}{k-1}}\\
+        \implies \dfrac{x_1+x_2+\dots +x_{k-1}}{k-1} &\geq \sqrt[k]{x_1x_2\dots x_{k-1}\cdot \frac{x_1+\dots + x_{k-1}}{k-1}}\\
+        \implies \dfrac{x_1+x_2+\dots +x_{k-1}}{k-1} &\geq \left(x_1x_2\dots x_{k-1}\cdot \frac{x_1+\dots + x_{k-1}}{k-1}\right)^\frac{1}{k}\\
+        \implies \dfrac{x_1+x_2+\dots +x_{k-1}}{k-1} &\geq \left(x_1x_2\dots x_{k-1} \right)^\frac{1}{k}  \left( \frac{x_1+\dots + x_{k-1}}{k-1}\right)^\frac{1}{k}\\
+        \implies  \left( \frac{x_1+\dots + x_{k-1}}{k-1}\right)^\frac{k-1}{k} &\geq \left(x_1x_2\dots x_{k-1} \right)^\frac{1}{k} \\
+        \implies  \left( \frac{x_1+\dots + x_{k-1}}{k-1}\right) &\geq \left(x_1x_2\dots x_{k-1} \right)^\frac{1}{k-1} \\
+        \implies \dfrac{x_1+x_2+\dots + x_{k-1}}{k-1} &\geq \sqrt[k-1]{x_1x_2\dots x_{k-1}}\\
+    \end{align*}
+    সুতরাং ইন্ডাকশনের সাহায্যে, স্টেটমেন্টটি সকল $n \in \NN$ এর জন্যই সত্য। $\qed$
+\end{sol}
+\subsubsection{Examples}
+\begin{exam} {উদাহরণ \thesubsubsection.1}
+    ধনাত্মক বাস্তব সংখ্যা $a,b,c$ এর জন্য প্রমান কর যে,
+    $$ a^2+b^2+c^2 \geq ab+bc+ca $$
+\end{exam}
+\begin{sol}
+    \textbf{সমাধানঃ} এখানে আমরা সরাসরি $3$ ভ্যারিয়াবলের AM-GM ব্যাবহার করতে পারি না তবে $2$ ভ্যারিয়াবলের 
+    AM-GM ব্যাবহার করে পাই, $$\dfrac{a^2 + b^2}{2} \geq ab$$ 
+    একইভাবে, $$\dfrac{b^2 + c^2}{2} \geq bc \text{ এবং } \dfrac{c^2 + a^2}{2} \geq ca$$
+    এখন, এই তিনটি ইনইকুয়ালিটিকে যোগ করে পেয়ে যাই,
+    $$a^2+b^2+c^2 \geq ab+bc+ca \qed$$
+\end{sol}
+\begin{exam} {উদাহরণ \thesubsubsection.2}
+    ধনাত্মক বাস্তব সংখ্যা $a,b,c$ এর জন্য প্রমান কর যে,
+    $$ \dfrac{a^3}{bc} + \dfrac{b^3}{ca} + \dfrac{c^3}{ab} \geq a+b+c $$
+\end{exam}
+\begin{sol}
+    \textbf{সমাধানঃ} এখানে, \begin{align*}
+        \dfrac{a^3}{bc} + \dfrac{b^3}{ca} + \dfrac{c^3}{ab} &\geq a+b+c\\
+        \iff \dfrac{a^4 + b^4 + c^4}{abc} &\geq a+b+c\\
+        \iff a^4+b^4+c^4 &\geq a^2bc+b^2ca+c^2ab
+    \end{align*}
+    এখন, আমরা $4$ ভ্যারিয়াবলের AM-GM ব্যাবহার করে পাই, 
+    $$\dfrac{a^4 + a^4 + b^4 + c^4}{4} \geq a^2bc$$ 
+    একইভাবে, $$\dfrac{b^4 + b^4 + c^4 + a^4}{4} \geq b^2ca \text{ এবং } \dfrac{c^4 + c^4 + a^4 + b^4}{4} \geq c^2ab$$
+    তিনটিকে যোগ করে পাই, 
+    $$a^4+b^4+c^4 \geq a^2bc+b^2ca+c^2ab$$
+    সুতরাং, প্রশ্নের স্টেটমেন্টটিও সত্য হবে। $\qed$ 
+\end{sol}
+
+\subsubsection{Excercixe}
+\begin{prob} {\thesubsubsection.1}
+    বাস্তব সংখ্যা $a,b,c$ এর জন্য প্রমান কর যে,
+    $$ a^3+b^3+c^3 \geq a^2b+b^2c+c^2a $$
+\end{prob}
+
+\begin{prob} {\thesubsubsection.2}
+    $a,b,c$ ধনাত্মক বাস্তব সংখ্যা যেনো, $a^2 + b^2 + c^2 = 1$। তাহলে, $\dfrac{ab}{c} + \dfrac{bc}{a} + \dfrac{ca}{b}$ এর সর্বনিম্ন মান কত?
+\end{prob}
+
+% \subsection{Triangle Inequality}
+
+\section{Example Problems}
+\begin{exam} {উদাহরণ \thesection.1 (BdMO 2019 National HS P2)}
+    প্রমাণ করো, $a,b,c$ ধনাত্মক বাস্তব সংখ্যা হলে,
+    $$\dfrac{a}{bc} + \dfrac{b}{ca} + \dfrac{c}{ab} \geq \dfrac{2}{a} +\dfrac{2}{b}-\dfrac{2}{c}$$
+\end{exam}
+\begin{sol}
+    \textbf{সমাধানঃ} এখানে, \begin{align*}
+        \dfrac{a}{bc} + \dfrac{b}{ca} + \dfrac{c}{ab} &\geq \dfrac{2}{a} +\dfrac{2}{b}-\dfrac{2}{c}\\
+        \iff \dfrac{a^2+b^2+c^2}{abc} &\geq \dfrac{2bc + 2ca - 2ab}{abc}\\
+        \iff a^2 + b^2+c^2 &\geq 2bc+2ca - 2ab\\
+        \iff a^2 + 2ab + b^2 + c^2 &\geq 2bc+2ca\\
+        \iff(a+b)^2 + c^2 &\geq 2bc+2ca\\
+        \iff(a+b)^2 - 2bc+2ca + c^2 &\geq 0\\
+        \iff(a+b)^2 - 2c(a+b) + c^2 &\geq 0\\
+        \iff(a+b-c)^2 &\geq 0\\
+    \end{align*}
+    যেটি অবশই সত্য। সুতরাং প্রথম অসমতাটিও সত্য। $\qed$
+\end{sol}
+
+\begin{exam} {উদাহরণ \thesection.2}
+    প্রমান কর যে, $a,b,c$ তিনটি ধনাত্মক বাস্তব সংখ্যা হলে, $$6a^3 + 9b^3 +32c^3 + \dfrac 1{4abc}$$
+    এর সর্বনিম্ন মান $6$। এবং $a,b,c$ এর কোন মানের জন্য সেটি পাওয়া যায়? 
+\end{exam}
+\begin{sol}
+    \textbf{সমাধানঃ} ধরি, $x = \sqrt[3]{6}a$, $y = \sqrt[3]{9}b$ এবং $z = \sqrt[3]{32}c$। এখন, মানগুলো 
+    প্রতিস্থাপন করে পাই, \begin{align*}
+        6a^3 + 9b^3 +32c^3 + \dfrac 1{4abc} &\geq 6\\
+        \iff x^3 + y^3 + z^3 + \dfrac{1}{4\cdot \frac{1}{\sqrt[3]{6}}x\cdot \frac{1}{\sqrt[3]{9}}y\cdot \frac{1}{\sqrt[3]{32}}z} &\geq 6\\
+        \iff x^3 + y^3 + z^3 + \dfrac{1}{4\cdot \frac{1}{\sqrt[3]{6\times 9\times 32}}xyz} &\geq 6\\
+        \iff x^3 + y^3 + z^3 + \dfrac{1}{4\cdot \frac{1}{12}xyz} &\geq 6\\
+        \iff x^3 + y^3 + z^3 + \dfrac{3}{xyz} &\geq 6\\
+    \end{align*}
+    এখন, $x^3 + y^3 + z^3 + \dfrac{3}{xyz} \geq 3xyz + \dfrac{3}{xyz}$ যেখানে ইকুয়ালিটি থাকবে যদি এবং কেবল যদি $x=y=z$ হয়।\\
+    আবার $3xyz + \dfrac{3}{xyz} = 3\left(xyz + \dfrac1{xyz}\right) \geq 3\times 2 = 6$ আর এখানে ইকুয়ালিটি হোল্ড করবে যদি 
+    এবং কেবল যদি, $xyz = 1$ হয়।\\ 
+    সুতরাং, অসমতাটি সত্য। আর ইকুয়ালিটি সত্য হবে যদি এবং কেবল যদি, $xyz = 1$ ও $x=y=z$ হয় অর্থাৎ 
+    $x=y=z=1 \implies a=\frac 1{\sqrt[3]{6}}, b=\frac 1{\sqrt[3]{9}}, c=\frac 1{\sqrt[3]{32}}$ হলে। $\qed$
+\end{sol}
+
+\begin{exam} {উদাহরণ \thesection.3}
+    ধনাত্মক সংখ্যা $x,y,z$ এর জন্য প্রমাণ করো, 
+    $$\dfrac{2}{x+y} + \dfrac{2}{y+z} + \dfrac{2}{z+x} \geq \dfrac{9}{x+y+z}$$
+\end{exam}
+\begin{sol}
+    \textbf{সমাধানঃ} ধরি, $a = x+y$, $b = y+z$ এবং $c = z+x$। এখন, 
+    \begin{align*}
+        \dfrac{2}{x+y} + \dfrac{2}{y+z} + \dfrac{2}{z+x} &\geq \dfrac{9}{x+y+z}\\
+        \iff \dfrac{2}{a} + \dfrac{2}{b} + \dfrac{2}{c} &\geq \dfrac{9}{\frac{a+b+c}{2}}\\
+        \iff \dfrac{2}{a} + \dfrac{2}{b} + \dfrac{2}{c} &\geq \dfrac{9\times 2}{a+b+c}\\
+        \iff \dfrac{1}{a} + \dfrac{1}{b} + \dfrac{1}{c} &\geq \dfrac{9}{a+b+c}\\
+        \iff \dfrac{ab+bc+ca}{abc} &\geq \dfrac{9}{a+b+c}\\
+        \iff (ab+bc+ca) &\geq \dfrac{9abc}{a+b+c}\\
+        \iff (ab+bc+ca)(a+b+c) &\geq 9abc\\
+        \iff a^2b+abc+ca^2+ab^2+b^2c\qquad &\\
+        +abc + abc+bc^2+c^2a &\geq 9abc\\
+        \iff a^2b+b^2c+c^2a +ca^2+ab^2  +bc^2 &\geq 6abc\\
+    \end{align*}
+    এখন, AM-GM ব্যাবহার করে পাই, $a^2b+b^2c+c^2a \geq 3abc$ এবং $ca^2+ab^2+bc^2 \geq 3abc$। আর 
+    যোগ করে পাই, $$a^2b+b^2c+c^2a +ca^2+ab^2  +bc^2 \geq 6abc$$
+    সুতরাং, আমাদের প্রথম অসমতাটিও সত্য। $\qed$
+\end{sol}
+
+\section{Practice Probs}
+
+\end{document}

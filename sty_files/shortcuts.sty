@@ -29,7 +29,7 @@
 \DeclareMathOperator*{\argmax}{arg max}
 
 %Convenient Environments
-\newenvironment{soln}{\begin{proof}[Solution]}{\end{proof}}
+% \newenvironment{soln}{\begin{proof}[Solution]}{\end{proof}}
 \newenvironment{parlist}{\begin{inparaenum}[(i)]}{\end{inparaenum}}
 \newenvironment{gobble}{\setbox\z@\vbox\bgroup}{\egroup}
 
@@ -139,3 +139,32 @@
 \newcommand{\km}{\mathfrak m}
 \newcommand{\kp}{\mathfrak p}
 \newcommand{\kq}{\mathfrak q}
+
+\newenvironment{theom}[1]{
+	\begin{tcolorbox}[colback=black!5!white,colframe=black!50!white,title=#1]
+}{
+	\end{tcolorbox}
+}
+\newenvironment{theom*}{
+	\begin{tcolorbox}[colback=blue!5!white,colframe=blue!50!white]
+}{
+	\end{tcolorbox}
+}
+
+\newenvironment{exam}[1]{
+	\begin{tcolorbox}[colback=red!5!white,colframe=red!60!white,title=#1]
+}{\end{tcolorbox}}
+\newenvironment{exam*}{
+	\begin{tcolorbox}[colback=red!5!white,colframe=red!50!white]
+}{
+	\end{tcolorbox}
+}
+
+\newenvironment{sol}{
+	\begin{tcolorbox}[colback=white,enhanced,breakable, frame hidden, borderline west = {0.5pt}{0pt}{green!50!black}]
+}{
+	\end{tcolorbox}
+}
+\newenvironment{prob}[1]{\textbf{সমস্যা #1.}}{}
+
+\DeclareMathOperator{\area}{area}
