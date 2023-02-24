@@ -129,7 +129,7 @@ $$P_k \implies P_{k-1} \implies \dots \implies P_2 \implies P_1$$
 তাই সেক্ষেত্রে উল্টোভাবে প্রমাণ লেখাই বেটার হবে।
 
 
-
+\newpage
 \section{Some useful ineqs}
 আমরা সবচেয়ে মৌলিক অসমতা টি দিয়েই শুরু করব। 
 \subsection{The Trivial Inequality}
@@ -158,7 +158,7 @@ $$P_k \implies P_{k-1} \implies \dots \implies P_2 \implies P_1$$
 \end{exam}
 
 \begin{sol}
-    এখানে, $a > 0$ সুতরাং,
+    \textbf{সমাধানঃ} এখানে, $a > 0$ সুতরাং,
     \begin{align*}
         &a + \dfrac{1}{a} \geq 2\\
         \iff & a^2 + 1 \geq 2a\\
@@ -170,15 +170,14 @@ $$P_k \implies P_{k-1} \implies \dots \implies P_2 \implies P_1$$
     শেষ স্টেটমেন্ট টি সত্য। সুতরাং, প্রথম স্টেটমেন্টটিও সত্য।
     আর শেষ স্টেটমেন্টে সমতা ঘটে, $a-1 = 0 \implies a = 1$ হলে। $\qed$
 \end{sol}
-এই সলুশনে কিছু প্রোপার্টি আমি ব্যাবহার করেছি যেগুলো এই প্রব্লেম এর কন্ডিশনে সত্য হলেও 
-সব সময় সত্য হয় না। এই ব্যাপারে আরো পাবে Some common mistakes সেকশনে।
+
 \begin{exam} {উদাহরণ \thesubsubsection.2 (AM-GM Inequality for two varriables)}
     প্রমান করো যে, যেকোনো ধনাত্মক বাস্তব সংখ্যা $a, b$ এর জন্য, 
     $$\dfrac{a+b}{2} \geq \sqrt{ab}$$
     আর সমতা ঘটে যদি এবং কেবল যদি, $a = b$ হয়। 
 \end{exam}
 \begin{sol}
-    Trivial inequality তে $x = (\sqrt a - \sqrt b)$ বসিয়ে পাই,
+    \textbf{সমাধানঃ} Trivial inequality তে $x = (\sqrt a - \sqrt b)$ বসিয়ে পাই,
     \begin{align*}
         & (\sqrt a - \sqrt b)^2 \geq 0\\
         \iff & a - 2\sqrt{ab} +b \geq 0\\
@@ -189,7 +188,7 @@ $$P_k \implies P_{k-1} \implies \dots \implies P_2 \implies P_1$$
 \end{sol}
 
 
-\subsubsection{Excercise}
+% \subsubsection{Excercise}
 
 \subsection{AM-GM Inequality}
 \subsubsection{Theorem Statement}
@@ -255,7 +254,7 @@ $$P_k \implies P_{k-1} \implies \dots \implies P_2 \implies P_1$$
     সুতরাং, প্রশ্নের স্টেটমেন্টটিও সত্য হবে। $\qed$ 
 \end{sol}
 
-\subsubsection{Excercixe}
+\subsubsection{Excercise}
 \begin{prob} {\thesubsubsection.1}
     বাস্তব সংখ্যা $a,b,c$ এর জন্য প্রমান কর যে,
     $$ a^3+b^3+c^3 \geq a^2b+b^2c+c^2a $$
@@ -330,5 +329,20 @@ $$P_k \implies P_{k-1} \implies \dots \implies P_2 \implies P_1$$
 \end{sol}
 
 \section{Practice Probs}
+\begin{prob} {\thesection.1}
+    ধরো $a,b,c,d > 0$। প্রমাণ করো, 
+    $$\dfrac 1a + \dfrac 1b + \dfrac 4c + \dfrac {16}d \geq \dfrac{64}{a+b+c+d}$$
+\end{prob}
+
+\begin{prob} {\thesection.2}
+    ধরো তিনটি ধনাত্মক সংখ্যা $a,b,c$ যেনো, $abc = 1$। প্রমাণ করো,
+    $$a^2+b^2+c^2 \geq a+b+c$$
+\end{prob}
+
+\begin{prob} {\thesection.3}
+    ধরো, $ a_1, a_2,\ldots, a_n$ অঋণাত্মক বাস্তব সংখ্যা। প্রমাণ করো,
+    $$\frac{1}{1+ a_1}+\frac{ a_1}{(1+ a_1)(1+ a_2)}+\frac{ a_1 a_2}{(1+ a_1)(1+ a_2)(1+ a_3)}+\cdots+\frac{ a_1 a_2\cdots a_{n-1}}{(1+ a_1)(1+ a_2)\cdots (1+ a_n)} \leq 1 $$
+    এবং কখন সমান হয় তা বের করো।
+\end{prob}
 
 \end{document}
